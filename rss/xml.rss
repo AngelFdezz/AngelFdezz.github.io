@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>Ejercicios XML</title>
+  <link>https://angelfdezz.github.io/</link>
+  <description>DAW - Grado superior de informatica</description>
+  <item>
+    <title>1 ejercicio</title>
+    <link>https://angelfdezz.github.io/</link>
+    <description>Asignatura de lm</description>
+  </item>
+  <item>
+    <title>2do año</title>
+    <link>https://angelfdezz.github.io/</link>
+    <description>Asignatura de lm</description>
+  </item>
+</channel>
+
+</rss>
