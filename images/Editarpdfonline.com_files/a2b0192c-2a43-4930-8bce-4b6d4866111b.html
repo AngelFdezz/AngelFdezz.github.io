@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)blob:https://editoriginalpdf.com/a2b0192c-2a43-4930-8bce-4b6d4866111b -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.initJS=function(PDFJSGlobal){
+          window.PDFJSGlobal = PDFJSGlobal          
+          function appClosure() {
+            for (var i in window) {
+              if (i != 'PDFJSGlobal' 
+              && i != 'location'
+              && i !='window'
+              && i != 'appClosure') {
+                  eval('var ' + i+ '=null');
+              }
+            }
+            var keys=['jsEngine',
+                    '_calculate',
+                    '_dirty',
+                    '_layout',
+                    '_arrTemplate',
+                    'printParams',
+                    'annotManage',
+                    'timeStamp',
+                    'cleanFields']
+            for(var key in window.PDFJSGlobal.doc){
+              if(keys.indexOf(key)!=-1){
+                continue;
+              }
+              (function(key){
+                if(typeof window.PDFJSGlobal.doc[key] == "function"){
+                  window[key]=function(){
+                    return window.PDFJSGlobal.doc[key].apply(window.PDFJSGlobal.doc,arguments)
+                  }
+                }else{
+                  Object.defineProperty(window,key,{get:function(){
+                    return window.PDFJSGlobal.doc[key]
+                  },set:function(val){
+                    window.PDFJSGlobal.doc[key] = val
+                  }})
+                }
+              })(key)
+            }
+
+            return {
+                docClosure: function (f) {
+                  with (PDFJSGlobal) {
+                    with (PDFJSGlobal.doc) {
+                    eval(f);
+                    return function (f) {
+                            return eval(f)
+                        }
+                      }
+                    }
+                }
+            }
+          }
+          window.app = appClosure();
+        }
+
+        window.runJS = function (data, engineEvent) {
+            var doc = window.PDFJSGlobal.doc;
+            window.PDFJSGlobal.event = engineEvent;
+
+            doc.timeStamp = engineEvent&&engineEvent.timeStamp;
+
+            const resetDocClosure =function(){
+                try{
+                    doc.exec = app.docClosure.call(doc,data.code);
+                }catch(e){
+                    doc.exec = app.docClosure(data.code);
+                    console.error(e);
+                }
+            }
+
+            switch (data.action) {
+                case 'execute':
+                    doc.exec(data.code, data, engineEvent);
+                    break;
+                case 'reset':
+                    resetDocClosure();
+                    return;
+                default:
+                    if(data.global) { // 兼容旧版本
+                        return resetDocClosure();
+                    }
+            }
+            window.PDFJSGlobal.event=null;
+        }
+    </script>
+</head>
+
+<body>
+
+
+</body></html>
