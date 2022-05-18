@@ -1,0 +1,47 @@
+/* FONDO DE DOCUMENTO */
+.banner {
+	background-attachment: fixed;
+	background-color: #07dfa9;
+	background-image: url(../css/images/fondos-de-pantalla-4k-scaled.jpg);
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: rgb(0, 0, 0);
+	cursor: default;
+	text-align: center;
+	width: 100%;
+	float: left;
+  
+	
+}
+.bg-overlay {
+	padding: 280px 0 220px;
+	background-color: RGBA(15, 5, 20, 0.84);
+}
+.banner-text:hover h2 {
+	color: #ffffff9a;
+}
+
+/* NOMBRE INTERMEDIO */
+.banner-text h2 span {
+	color: rgb(0, 0, 0);
+}
+.banner-text p {
+	font-size: 15px;
+	color: #d075fa9a;
+}
+.banner-button {
+	border: rgba(204, 204, 204, 0.18) 1px solid;
+	padding: 12px 35px;
+	color: rgba(255, 255, 255, 0.801);
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	margin-top: 50px;
+}
+/* BOTON SOBRE MÍ */
+.banner-button:hover {
+	background-color: rgb(174, 163, 185);
+	text-decoration: none;
+	color: #000;
+}
